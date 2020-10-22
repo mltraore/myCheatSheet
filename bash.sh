@@ -44,6 +44,8 @@ history        # shows command line history
 !<string>      # refers to command starting with 'string'
 
 
+UP ARROW       # Returns the last command ran
+
 ##############################################################################
 #   TERMINAL
 ##############################################################################
@@ -146,7 +148,83 @@ whatis       <command>             #  Display one-line manual page descriptions
 <command>    --help                #  Give a help list of the command
 man          <command>             #  An interface to the on-line reference manuals
 
+#####################   Adding to a file (Redirect)   ####################
 
+# there are 3 ways  vi/(> >>)/echo > or >>
+
+echo   "text to put"      >     <filename>     # Creates file if it doesn't exist and write in or overwrites if does exist 
+echo   "text to append"   >>    <filename>
+
+ls  -ltr >  <filename>
+
+###############  standard Output to a file (tee cmd)   ####################
+
+echo "text to put"  | tee <filename>      # Will write to file and display the text
+echo "text to put"  | tee -a <filename>   # Will append to file and display the text
+ls -l | tee <file1> <file2> ... <file_n>
+
+#######################         PIPES              ######################
+
+command1 [arguments]  |  command2 [arguments]   # takes the output of the first command as a of the second one
+ls -l  | more                                   # Show one page at a time
+ls     | tail -1                                # Returns the last line
+
+
+#######################  FILE MAINTENACE COMMANDS   ######################
+
+cp    -option  <source>  <destination>          # Copy files and directories
+mv    
+rm
+rm -Rf                                          # Will forcefully remove sub-directories and its contents as well
+mkdir
+rmdir  or rm -r                                
+chown
+chgrp
+
+chown   <ownership>:<group>   <filename>        # Will change both ownership and group at a time
+
+
+#######################  FILE  DISPLAY  COMMANDS   ######################
+
+cat     <filename>                                # Displays the content of the file, all at a time
+
+more    <filename>                                # Displays the content of file page-by-page with percentage
+less    <filename>                                # Displays the content of file page-by-page
+                                                  # By typing j  line-by-line and k line-by-line(backup)
+
+head -n <filename>                                # Displays the n first line of the file content                 
+tail -n <filename>                                # Displays the n last  line of the file content
+
+
+##############################################################################
+#   FILTERS / TEXT PROCESSORS COMMANDS
+##############################################################################
+
+cut, awk, grep/egrep, uniq, sort and wc   commands
+
+
+
+#######################  Cut  COMMAND   ######################
+
+# Cut is a command line utility that allows us to cut parts of lines from specified files 
+#     or piped data and print the result to standard output. It can be used to cut parts of 
+#     a line by delimiter, byte position, and character. 
+
+
+cut   <filename>                 # Doesn't work,  lack of option
+cut   --version                  # Displays the version of cut command
+cut   --help                     # Get information about each option of cut cmd
+cut   -c1        <filename>      # Lists the first character of each line in the file
+cut   -c1,2,4    <filename>      # Pick and Chose character (here first, 2th, 4th char of each line)     
+cut   -c1-3      <filename>      # Lists range of characteres
+cut   -c1-3,6-8  <filename>      # Lists specific range of characters
+cut   -b1-3      <filename>      # List by byte Size
+
+cut -d: -f 6    /etc/passwd      # List first 6th column separated by :
+cut -d: -f 6-7  /etc/passwd      # List first 6 and 7th column separated by :
+                                 # : cand be replaced by a desired character
+                                 
+ls  -l | cut -c2-4               # Only print user permissions of files/dir
 
 
 
