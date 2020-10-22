@@ -210,6 +210,10 @@ cut, awk, grep/egrep, uniq, sort and wc   commands
 #     or piped data and print the result to standard output. It can be used to cut parts of 
 #     a line by delimiter, byte position, and character. 
 
+# The cut command allows a portion of a file to be extracted for another use.
+# cut  [option]   file     # Options:  -c -> character_list,  -d -> delimiter, -f -> field_list
+
+
 
 cut   <filename>                 # Doesn't work,  lack of option
 cut   --version                  # Displays the version of cut command
@@ -225,6 +229,35 @@ cut -d: -f 6-7  /etc/passwd      # List first 6 and 7th column separated by :
                                  # : cand be replaced by a desired character
                                  
 ls  -l | cut -c2-4               # Only print user permissions of files/dir
+
+##############################################################################
+#   SYSTEM ADMINISTRATION
+##############################################################################
+
+###############################    Vi  Editor     ############################
+
+#### Vi supplies commands for:  
+      # Inserting and deleting text
+      # Replacing text
+      # Moving Around the file
+      # Finding and substituting strings
+      # Cutting and pasting text
+      
+### Most Common keys:
+      #  i      insert
+      #  Esc    Escape out of any mode
+      #  r      Replace
+      #  d      Delete
+      # :q!     Quit without saving
+      # :wq!    Save and quit     /  shift + zz
+      #  u      undo the last op
+      #  dd     delete the line under cursor
+      #  x      delete a character
+      
+      # vim course   https://openvim.com/
+      
+      
+###############################    sed   COMMAND     ############################      
 
 
 
