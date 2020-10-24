@@ -258,6 +258,42 @@ ls  -l | cut -c2-4               # Only print user permissions of files/dir
       
       
 ###############################    sed   COMMAND     ############################      
-
+ 
+    #  sed command can be used for:
+    #     Replace a string in a file  
+    #     Find and delete line
+    #     Remove empty lines
+    #     Remove the first or n lines in a file
+    #     To replace tabs with spaces
+    #     Show defined lines from a file
+    #     Substitute within vi editor
+    #     and much more...
+    # g: for every,  i: insert,  d: delete,  s: subtitute
+    
+    # Examples
+    
+    sed       's/<key1>/<key2>/g'    <filename>         # Will replace all key1 in the file by key2
+                                                        # It only makes change to the screen and not inside the file
+    sed  -i   's/<key1>/<key2>/g'    <filename>         # insert the changes into the file
+    sed       's/<word>//g'          <filename>         # Delete all <key> in the file
+    sed       '/<key>/d'             <filename>         # Delete all line containning the key<character, string text>
+    sed       '/^$/d'                <filename>         # Delete all empty lines in the file   
+    sed       '<n>d'                 <filename>         # remove the nth line from the file
+    sed       '<n1>,<n2>d'           <filename>         # remove <n1>,<n2> range lines from the file
+    sed       's/\t/ /g'             <filename>         # Replace all tabs in the file by space
+    sed  -n   <n1>,<n2>p             <filename>         # Show lines from <n1> to <n2>
+    sed       <n1>,<n2>d             <filename>         # All except <n1>,<n2> range lines 
+    sed   G   <filename>                                # Put empty line between all lines of the file
+    sed      '<n1>!s/<key1>/<key2>/g' <filename>        # Except <n1>th key1 replace all other <key1> by <key2>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
 
 
