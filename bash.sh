@@ -272,28 +272,94 @@ ls  -l | cut -c2-4               # Only print user permissions of files/dir
     
     # Examples
     
-    sed       's/<key1>/<key2>/g'    <filename>         # Will replace all key1 in the file by key2
+sed       's/<key1>/<key2>/g'    <filename>         # Will replace all key1 in the file by key2
                                                         # It only makes change to the screen and not inside the file
-    sed  -i   's/<key1>/<key2>/g'    <filename>         # insert the changes into the file
-    sed       's/<word>//g'          <filename>         # Delete all <key> in the file
-    sed       '/<key>/d'             <filename>         # Delete all line containning the key<character, string text>
-    sed       '/^$/d'                <filename>         # Delete all empty lines in the file   
-    sed       '<n>d'                 <filename>         # remove the nth line from the file
-    sed       '<n1>,<n2>d'           <filename>         # remove <n1>,<n2> range lines from the file
-    sed       's/\t/ /g'             <filename>         # Replace all tabs in the file by space
-    sed  -n   <n1>,<n2>p             <filename>         # Show lines from <n1> to <n2>
-    sed       <n1>,<n2>d             <filename>         # All except <n1>,<n2> range lines 
-    sed   G   <filename>                                # Put empty line between all lines of the file
-    sed      '<n1>!s/<key1>/<key2>/g' <filename>        # Except <n1>th key1 replace all other <key1> by <key2>
+sed  -i   's/<key1>/<key2>/g'    <filename>         # insert the changes into the file
+sed       's/<word>//g'          <filename>         # Delete all <key> in the file
+sed       '/<key>/d'             <filename>         # Delete all line containning the key<character, string text>
+sed       '/^$/d'                <filename>         # Delete all empty lines in the file   
+sed       '<n>d'                 <filename>         # remove the nth line from the file
+sed       '<n1>,<n2>d'           <filename>         # remove <n1>,<n2> range lines from the file
+sed       's/\t/ /g'             <filename>         # Replace all tabs in the file by space
+sed  -n   <n1>,<n2>p             <filename>         # Show lines from <n1> to <n2>
+sed       <n1>,<n2>d             <filename>         # All except <n1>,<n2> range lines 
+sed   G   <filename>                                # Put empty line between all lines of the file
+sed      '<n1>!s/<key1>/<key2>/g' <filename>        # Except <n1>th key1 replace all other <key1> by <key2>
        
-       
-       
-       
-       
-       
-       
-       
-       
-       
+        
+###############################   USER ACCOUNT MANAGEMENT     ############################     
+ 
+# useradd, groupadd, userdel, groupdel, usermod
+  # user, grouğ infos are stored in three diff files
+  # /etc/passwd
+  # /etc/group
+  # /etc/shadow
+  
+  # -g (primary group assigned to the users) 
+  # -G (Other groups the user belongs to)
+  # -a (Add the user to the supplementary group(s))
+  
+  
+useradd -g <groupname> -s <shellenvironment> -c "user description" -m -d <userhomedirectory> <username>
+useradd -g superheros  -s /bin/bash  -c "New group member" -m -d /home/spiderman  spiderman
+userdel -r <username>
+
+groupadd   <groupname>
+groupdel   <groupname>
+usermod -G <groupname>  <username>       # Modify a user account here is how to add a user to a group
+gpasswd -d <username>   <groupname>      # remove a user from a group
+gpasswd -a <username>   <groupname>      # add a user to a group
+
+sudo useradd    angelo
+passwd angelo                            # angelo00
+id angelo  
+
+sudo groupadd   jokers
+cat /etc/group
+
+sudo usermod -a -G jokers angelo         # angelo added to jokers' group  
+sudo usermod -g    jokers angelo         # set jokers group as angelo's primary group
+
+gpasswd -d angelo jokers                 # remove angelo from jokers group
+
+sudo userdel  -r  angelo
+sudo groupdel  jokers
+
+
+#########################   SWITCH USERS AND SUDO ACCESS     ######################## 
+
+  # Commands: su - username, sudo command, visudo
+  # File:     /etc/sudoers
+  
+su - angelo                               # Switch to angelo user account  
+exit                                      # Exit to the default user account 
+sudo visudo -f /etc/sudoers               # Edit sudoers file
+angelo ALL=(ALL)   ALL                    # Adding that to sudoers file will allow angelo to run all commands                             
+
+sudo fdisk --list
+sudo dmidecode                            # Info about  system's hardware
+
+############################        Monitor Users        ############################ 
+# Commands:  who, last, w, finger, id
+
+who                        # show who is logged on / logged time and id
+last                       # show a listing of last logged in users / users infos such as boot reboots times
+last | awk '{print $1}'    # To see the first column only
+last | cut -d' ' -f1       # Another option
+
+last | awk '{print $1}'| sort | uniq
+last | cut -d' '  -f1  | sort | uniq
+
+w                          # Show who is logged on and what they are doing.
+
+yum install finger -y   
+
+id                         # Current user's infos, id, groups so and so...
+id  <username>             # A specific user's infos
+
+############################        Talking to Users        ############################
+# Commands:  users, wall, write
+
+   
 
 
