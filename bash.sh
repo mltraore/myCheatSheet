@@ -360,6 +360,44 @@ id  <username>             # A specific user's infos
 ############################        Talking to Users        ############################
 # Commands:  users, wall, write
 
-   
+wall
+  Message Text
+  -- SenderName
+  CTRL+D
+  
+users                         # Display current open sessions' users 
+write  <receivername>         # Send message to a specific user
+
+############  Linux Directory Service - Linux Account Authentification ################
+
+#Types of Accounts
+     # Local accounts
+     # Domain/ Directory accounts
+     # Difference between Active directory, LDAP, IDM, WinBIND, OpenLDAP ...
+     
+     
+#################  SYSTEM UTILITY COMMANDS ##################
+
+date                          # print or set the system date and time
+date -u                       # Condinated Universital Time (UTC)
+$date -r file.txt             # last date when file has beeen modified
+$date +%[format-option]
+$date "+%D %T"                # Display date Time
+$date "+%Y/%m/%d"             # Diaplay year, month, day
+
+uptime                        # Tell how long the system has been running.
+
+uname                         # print system information
+                              # and get info about current kernel
+hostname
+
+which  <command>              # To get the location of a command
+cal <day> <year>              # Calendar
+
+bc                            # binary calculator
+
+##########################    PROCESSES AND JOBS    ##########################
+     
+
 
 
