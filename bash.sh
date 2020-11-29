@@ -47,11 +47,19 @@ history        # shows command line history
 UP ARROW       # Returns the last command ran
 
 ##############################################################################
-#   TERMINAL
+#   TERMINAL & System Maintenance commands
 ##############################################################################
 
 exit           # logs out of current session
 clear          # clears content on window (hide displayed lines)
+
+shutdown
+reboot
+halt
+init
+
+
+
 
 ##############################################################################
 #   FILE SYSTEM STRUCTURE AND ITS DESCRIPTION
@@ -397,7 +405,67 @@ cal <day> <year>              # Calendar
 bc                            # binary calculator
 
 ##########################    PROCESSES AND JOBS    ##########################
-     
+
+$ sudo systemctl restart ntp
+$ sudo systemctl status  ntp
+$ sudo systemctl stop    ntp
+$ sudo systemctl enable  ntp           # ntp service will start at every boot time 
+
+$ ps -ef | grep <processname>
+$ top                                  # for more info about system and running processes
+
+# the use of crontab 
+# parameters: minute[0-59], hour[0-23], day of month[1-31], month[1-12], day of week[0-7]
+
+$ crontab -e
+22 13 * 3 * echo "This is my first crontab entry" > crontab-file
+
+# there are 4 type of cronjobs, Hourly, Daily, Weekly, Monthly
+$ cd /etc/
+$ ls -l | grep cron                         # to see cron files i.e cron.daily, cron.monthly
+$ cp  <scriptfilename>   /etc/cron.daily    # to run my script daily
+
+##########################    PROCESSES Management   ##########################
+
+# Background = CTRL+Z, jobs, bg
+# Foreground = fg
+# Run process even after exit =  nohup process &
+#                             or nohup process > /dev/null 2>&1 &
+# Kill a process by name = pkill
+# Process priority = nice    (i.e   nice -n 5 process) [-20 19]
+# Process monitoring = top
+# Process list = ps
+
+$ CTRL + Z            # stop processes and send to background
+$ jobs                # to see  processes in the background
+$ bg                  # send the process to the background & and run it
+$ fg                  # bring stopped process(with ctrl+z) to foreground
+
+$ nohup sleep 100 &   # run the command in backgound
+$ nohup sleep 100  > /dev/null 2>&1 &  # to not see the message
+
+##########################    System monitoring   ##########################
+
+$ df -h             # report file system disk space usage
+$ dmesg             # gives the of the system related warnings, error messages, failures
+                    # info about ports and so
+$ iostat            # input output statistic / Report Central Processing Unit (CPU) statistics and in...
+$ iostat  1         # refresh th output at every 1 second
+
+$ netstat           # Print network connections, routing tables, interface statistics, masquerade...
+$ netstat -rnv      # Gateway info + Subnet mask + Used Interface info
+
+$ free              # Display amount of free and used memory in the system
+
+$ cat /proc/cpuinfo   # System ressource infos
+$ cat /proc/meminfo   # Memory ressource infos
+
+##########################    Log monitoring   ########################## 
+# Directory = /var/log
+$ more boot.log
+$ more maillog               # All infos about mail traffic
+$ more secure                # All about system security
+$ more messages              # Every thing 
 
 
 
