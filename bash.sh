@@ -50,13 +50,18 @@ UP ARROW       # Returns the last command ran
 #   TERMINAL & System Maintenance commands
 ##############################################################################
 
-exit           # logs out of current session
-clear          # clears content on window (hide displayed lines)
+exit                       # Exit out of shell, terminal or a user session
+clear                      # clears content on window (hide displayed lines)
+script <logFilename.log>   # stores terminal activities in a log file
+more logFilename.log       # to see the content
 
-shutdown
+
+shutdown 
 reboot
 halt
 init
+
+init 6         # reboot
 
 
 
@@ -466,6 +471,59 @@ $ more boot.log
 $ more maillog               # All infos about mail traffic
 $ more secure                # All about system security
 $ more messages              # Every thing 
+
+##########################    Changimg System Hostname   ########################## 
+ 
+$ hostnamectl  set-hostname  <newhostname>
+$ cat /etc/hostname
+
+##########################    System Infos   ########################## 
+
+$ uname -a
+$ dmidecode
+
+##########################    System Arch   ########################## 
+
+$ arch
+$ uname -m
+
+##########################    Recover Root Password   ########################## 
+
+# Restart the computer 
+# Edit grup
+# Change password
+# reboot
+
+# TOSEE
+
+##########################    SOS Report     #########################
+
+sosreport
+
+##########################  Environment Variables  #########################
+
+$ printenv                  # to view all environment variables
+$ env
+$ echo $SHELL               # to see the value of SHELL environment variable
+$ export TEST=1             # To set the environment variables
+ 
+$ vi .bashrc                # to set EV permanently
+$ TEST='123'
+$ export TEST
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
