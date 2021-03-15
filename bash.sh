@@ -511,9 +511,10 @@ $ vi .bashrc                # to set EV permanently
 $ TEST='123'
 $ export TEST
 
+##########################  Networking, Services and System Updates  #########################
 
-
-
+$ scp <filename> <remote_username>@<ip_address>:/home/...
+$ scp <remote_username>@<ip_address>:/<path to the file>  <client_dir> # pull something from the server to the client
 
 
 
